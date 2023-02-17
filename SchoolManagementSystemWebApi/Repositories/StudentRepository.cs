@@ -20,9 +20,9 @@
             return Save();
         }
 
-        public double GetAverageGrade(int studentId)
+        public double GetAverageGrade(int studentId, int subjectId)
         {
-            return _context.Progresss.Where(r => r.Student.Id == studentId).Average(r => r.Grade);
+            return _context.Progresss.Where(r => r.Student.Id == studentId).Where(r => r.Subject.Id == subjectId).Average(r => r.Grade);
             
         }
 

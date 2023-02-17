@@ -64,11 +64,11 @@
             }
 
             var progress = _progressRepository.GetProgresses()
-                .Where(c => c.Grade == progressCreate.Grade).FirstOrDefault();
+                .Where(c => c.Id == progressCreate.Id).FirstOrDefault();
 
             if (progress != null)
             {
-                ModelState.AddModelError("", "Категория уже существует");
+                ModelState.AddModelError("", "Успеваемость уже существует");
                 return StatusCode(422, ModelState);
             }
 

@@ -177,16 +177,17 @@
             }
         }
 
-        [HttpGet("{studentId}/AverageGrade")]
+        [HttpGet("{studentId}/{subjectId}/AverageGrade")]
         [ProducesResponseType(200, Type = typeof(double))]
         [ProducesResponseType(400)]
-        public IActionResult GetStudentGrades(int studentId)
+        public IActionResult GetStudentGrades(int studentId, int subjectId)
         {
             if (!_studentRepository.StudentExists(studentId))
             {
                 return NotFound();
             }
-            var grade = _studentRepository.GetAverageGrade(studentId);
+            var gradeMap = _studentRepository.GetAverageGrade(studentId, subjectId);
+           
 
             if (!ModelState.IsValid)
             {
@@ -194,7 +195,7 @@
             }
             else
             {
-                return Ok(grade);
+                return Ok(gradeMap);
             }
         }
     }
